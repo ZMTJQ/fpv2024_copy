@@ -1,0 +1,27 @@
+name: Lean Autograder
+
+on: [push, pull_request]
+
+jobs:
+  autograde:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Lean via Elan
+        run: |
+          curl -s https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | bash -s -- -y
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+      - name: Prepare files for autograder
+        run: |
+          mkdir -p /autograder/submission
+          cp LoVe/Homework/Homework1.lean /autograder/submission/Assignment.lean
+          mkdir -p .lake/packages/autograder/AutograderTests
+          cp LoVe/Homework/Homework1.lean .lake/packages/autograder/AutograderTests/Solution.lean
+
+      - name: Build project
+        run: lake build
+
+      - name: Run autograder
+        run: lake exe autograder --local /autograder/submission/Assignment.lean .lake/packages/autograder/AutograderTests/Solution.lean
