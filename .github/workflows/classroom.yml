@@ -26,10 +26,12 @@ jobs:
       - name: Run Lean Autograder
         run: |
           lake exe autograder --local LoVe/Homework/Homework1.lean LoVe/Homework/Homework1.lean
-   
-      - name: Debug result files
-        run: find . -name "results.json"
-  
+     
+      - name: Debug Find and inspect results.json
+        run: |
+          find . -name "results.json" -exec ls -lh {} \;
+          cat ./results.json || echo "results.json not found"
+          
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
   
