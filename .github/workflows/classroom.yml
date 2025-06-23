@@ -20,6 +20,8 @@ jobs:
         run: |
           echo "leanprover/lean4:4.15.0" > lean-toolchain
           lake update autograder 
+          lake update mathlib
+          lake update mdgen
           
       # Run lake to build the project (including the autograder)
       - name: Build with lake
