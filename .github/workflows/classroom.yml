@@ -19,6 +19,7 @@ jobs:
       # Run lake to build the project (including the autograder)
       - name: Build with lake
         run: |
+          lake update autograder
           lake exe cache get
           lake build
 
