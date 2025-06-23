@@ -16,8 +16,8 @@ rev = "a719ba5c3115d47b68bf0497a9dd1bcbb21ea663"
 
 [[require]]
 name = "autograder" 
-git = "https://github.com/ZMTJQ/lean4-autograder-main-copy.git"
-rev = "bac0a6c9b83279e903d89c56621dbe89fd2b27f3"
+git = "https://github.com/ZMTJQ/lean4-autograder-main-copy"
+rev = "master"
 
 [[require]]
 name = "mdgen"
