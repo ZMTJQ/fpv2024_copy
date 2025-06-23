@@ -16,10 +16,14 @@ jobs:
           curl -s https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | bash -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
           
+      - name: Force Lean version
+        run: |
+          echo "leanprover/lean4:4.15.0" > lean-toolchain
+          lake update autograder 
+          
       # Run lake to build the project (including the autograder)
       - name: Build with lake
         run: |
-          lake update autograder
           lake exe cache get
           lake build
 
