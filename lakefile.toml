@@ -12,7 +12,7 @@ linter.unreachableTactic = false
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4.git"
-rev = "a719ba5c3115d47b68bf0497a9dd1bcbb21ea663"
+rev = "29f9a66d622d9bab7f419120e22bb0d2598676ab"
 
 [[require]]
 name = "autograder" 
@@ -22,7 +22,7 @@ rev = "master"
 [[require]]
 name = "mdgen"
 git = "https://github.com/Seasawher/mdgen"
-rev = "bdfc2e355fbd5003be7094b3c99ff9d833aff7da"
+rev = "116f091322ca97a8d3fafb27c3d1a24b39cbd9bb"
 
 [[lean_lib]]
 name = "LoVe"
