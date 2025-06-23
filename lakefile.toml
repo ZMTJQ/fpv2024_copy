@@ -16,7 +16,7 @@ rev = "a719ba5c3115d47b68bf0497a9dd1bcbb21ea663"
 
 [[require]]
 name = "autograder" 
-git = "https://github.com/ZMTJQ/fpv2024_copy"
+git = "https://github.com/ZMTJQ/lean4-autograder-main-copy"
 rev = "master"
 
 [[require]]
