@@ -19,9 +19,6 @@ jobs:
       # Run lake to build the project (including the autograder)
       - name: Build with lake
         run: |
-          lake update autograder 
-          lake update mathlib
-          lake update mdgen
           lake exe cache get
           lake build
 
@@ -29,6 +26,9 @@ jobs:
       - name: Run Lean Autograder
         run: |
           lake exe autograder --local LoVe/Homework/Homework1.lean LoVe/Homework/Homework1.lean
+   
+      - name: Debug result files
+        run: find . -name "results.json"
      
       - name: Debug Find and inspect results.json
         run: |
@@ -37,8 +37,3 @@ jobs:
           
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
-  
-      - name: Format Gradescope JSON for GitHub Classroom
-        run: |
-          mkdir -p .results
-          jq '.tests' results.json > .results/results.json
