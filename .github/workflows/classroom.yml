@@ -28,7 +28,7 @@ jobs:
         run: |
           lake exe autograder --local LoVe/Homework/Homework1.lean LoVe/Homework/Homework1.lean
 
-      - name: Debug result files
+      - name: Debug result file
         run: find . -name "results.json"
      
       - name: Debug Find and inspect results.json
