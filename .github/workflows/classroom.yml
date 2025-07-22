@@ -30,12 +30,10 @@ jobs:
 
       - name: Debug result file
         run: find . -name "results.json"
-     
-      - name: Debug Find and inspect results.json
-        run: |
-          find . -name "results.json" -exec ls -lh {} \;
-          cat ./results.json || echo "results.json not found"
-          
+
+      - name: Search entire runner for results.json
+        run: sudo find / -name "results.json" 2>/dev/null || echo "results.json not found anywhere"
+        
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
    
