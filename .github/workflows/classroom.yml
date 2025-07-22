@@ -26,7 +26,7 @@ jobs:
       # Run the autograder with the student's submission
       - name: Run Lean Autograder
         run: |
-          lake exe autograder --local LoVe/Homework/Homework1.lean LoVe/Homework/Homework1.lean
+          lake exe autograder --test LoVe/Homework/Homework1.lean LoVe/Homework/Homework1.lean
 
       - name: Debug result file
         run: find . -name "results.json"
