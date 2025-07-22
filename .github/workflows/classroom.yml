@@ -16,6 +16,9 @@ jobs:
           curl -s https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | bash -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
           
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq  
+        
       # Run lake to build the project (including the autograder)
       - name: Build with lake
         run: |
@@ -27,14 +30,22 @@ jobs:
       - name: Run Lean Autograder
         run: |
           lake exe autograder --local LoVe/Homework/Homework1.lean LoVe/Homework/Homework1.lean
-
-      - name: Debug result file
-        run: find . -name "results.json"
-
-      - name: Search entire runner for results.json
-        run: sudo find / -name "results.json" 2>/dev/null || echo "results.json not found anywhere"
         
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
-   
-  
+      # Debug: Show contents if needed
+      - name: Show results.json
+        run: cat results.json
+
+      # Extract Gradescope-compatible 'tests' field
+      - name: Format Gradescope JSON for GitHub Classroom
+        run: |
+          mkdir -p .results
+          jq '.tests' results.json > .results/results.json
+          
+      # Upload for manual debug (optional)   
+      - name: Upload results.json artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-json
+          path: /home/runner/work/fpv2024_copy/fpv2024_copy/results.json
+
+    
